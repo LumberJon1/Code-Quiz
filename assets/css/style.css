@@ -27,3 +27,40 @@ header > button, p {
     cursor: pointer;
 }
 
+/*Start page styling*/
+#intro-section, #quiz-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 300px;
+}
+
+#intro-section h1 {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+#intro-section p {
+    width: 60%;
+}
+
+#start-button {
+    border: none;
+    background-color: #835dc0;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 1px 2px 8px #382458;
+    color: #eaeee2;
+    font-weight: bold;
+}
+
+#start-button:hover {
+    cursor: pointer;
+    color:#b7fff5;
+    background-color: #2e3c64;
+    transition: 0.25s;
+}
+
+/*Quiz section styling*/
+
