@@ -28,7 +28,7 @@ header > button, p {
 }
 
 /*Start page styling*/
-#intro-section, #quiz-section {
+section {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -63,4 +63,35 @@ header > button, p {
 }
 
 /*Quiz section styling*/
+#quiz-section h2 {
+    width: 100%;
+    padding: 0 30px;
+    align-self: center;
+}
 
+.answer-list {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: flex-start;
+    margin-left: 50px;
+    justify-content: space-evenly;
+}
+
+.answer {
+    background-color: #835dc0;
+    color: #eff8ff;
+    padding: 10px 20px;
+    width: 80%;
+    border-radius: 5px;
+    box-shadow: 1px 2px 8px #382458;
+    list-style: none;
+}
+
+.answer:hover {
+    cursor: pointer;
+    color:#b7fff5;
+    background-color: #2e3c64;
+    transition: 0.25s;
+}
