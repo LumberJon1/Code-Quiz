@@ -4,3 +4,26 @@
     padding: 0;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+}
+
+header > button, p {
+    background-color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#high-scores-button {
+    border: none;
+    color: #5d7cc0;
+}
+
+#high-scores-button:hover {
+    color: #5dc0b3;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
