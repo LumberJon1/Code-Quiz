@@ -21,8 +21,8 @@ var quizQuestions = {
         correct: "array[0]"
     },
     question3: {
-        question: "",
-        answers: ["", "", "", ""],
+        question: "How would you access the 'length' property of an array using JavaScript?",
+        answers: ["array.length()", "array.length", "len(array)", "array[].length"],
         correct: ""
     },
     question4: {
@@ -104,9 +104,37 @@ var startQuiz = function() {
     quizSectionEl.style.display = "flex";
 
     //Call the function that will loop through the quizQuestions object
+    showQuestion(quizQuestions.question1);
+    console.log(quizQuestions); //currently shows undefined, unsure why that is.
 }
 
 //Function to add quiz elements to the page
+var showQuestion = function(questionObj) {
+    /*Takes an object from the quizQuestions object as a parameter and creates
+    elements to display to the screen with its attributes*/
+
+    //Create and append the question h3 element to the quiz section
+    var quizQuestionEl = document.createElement("h2");
+    quizQuestionEl.textContent = questionObj.question;
+    quizSectionEl.appendChild(quizQuestionEl);
+
+    //create and append the 4 answer elements to an ol element inside quiz section
+    //with class answer-list
+    var answerListEl = document.createElement("ol");
+    answerListEl.className = "answer-list";
+    quizSectionEl.appendChild(answerListEl);
+
+    for (var i = 0; i < questionObj.answers.length; i++) {
+        var answerEl = document.createElement("li");
+        answerEl.textContent = questionObj.answers[i];
+        answerEl.className = "answer";
+        answerListEl.appendChild(answerEl);
+    }
+
+}
+
+
+//Function to toggle visibility of the quiz questions section
 var toggleQuestions = function() {
     if (quizSectionEl.style.display === "none") {
         quizSectionEl.style.display = "flex";    
