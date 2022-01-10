@@ -63,6 +63,10 @@ section {
 }
 
 /*Quiz section styling*/
+#quiz-section {
+    display: none;
+}
+
 #quiz-section h2 {
     width: 100%;
     padding: 0 30px;
