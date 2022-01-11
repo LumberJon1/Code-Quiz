@@ -214,7 +214,6 @@ var nextQuestion = function(event) {
             }
         }
         checkAnswer(answerIndex, correctIndex);
-
     }
 }
 
@@ -265,6 +264,16 @@ var toggleQuestions = function() {
 }
 
 var endQuiz = function() {
+    //Clear the quiz answer elements from the display
+    toggleQuestions();
+
+    //Define elements to show in their place
+
+    //All Done!
+    //Your final score is: <score>
+    //Enter Initials [..........] (text field)
+    //Retry button ..... //Submit button
+
     
 }
 
@@ -273,3 +282,6 @@ startButton.addEventListener("click", startQuiz);
 
 //Event listeners for the quiz pages
 mainPageEl.addEventListener("click", nextQuestion);
+
+//Event listeners for the end page
+

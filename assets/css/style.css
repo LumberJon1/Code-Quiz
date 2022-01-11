@@ -16,8 +16,26 @@ header > button, p {
     font-size: 16px;
 }
 
+button {
+    border: none;
+    background-color: #835dc0;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 1px 2px 8px #382458;
+    color: #eaeee2;
+    font-weight: bold;
+}
+
+button:hover {
+    cursor: pointer;
+    color:#b7fff5;
+    background-color: #2e3c64;
+    transition: 0.25s;
+}
+
 #high-scores-button {
     border: none;
+    box-shadow: none;
     color: #5d7cc0;
 }
 
@@ -36,6 +54,10 @@ section {
     height: 300px;
 }
 
+#intro-section {
+    display: none;
+}
+
 #intro-section h1 {
     font-weight: bold;
     font-size: 36px;
@@ -43,23 +65,6 @@ section {
 
 #intro-section p {
     width: 60%;
-}
-
-#start-button {
-    border: none;
-    background-color: #835dc0;
-    padding: 10px 20px;
-    border-radius: 12px;
-    box-shadow: 1px 2px 8px #382458;
-    color: #eaeee2;
-    font-weight: bold;
-}
-
-#start-button:hover {
-    cursor: pointer;
-    color:#b7fff5;
-    background-color: #2e3c64;
-    transition: 0.25s;
 }
 
 /*Quiz section styling*/
@@ -72,6 +77,46 @@ section {
     padding: 0 30px;
     align-self: center;
 }
+
+#end-section {
+    justify-content: center;
+}
+
+#end-section h2 {
+    margin-bottom: 15px;
+}
+
+#end-section div, form, p {
+    margin: 10px 0;
+}
+
+#end-section div {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#end-section p {
+    font-size: 20px;
+}
+
+#end-section form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+#end-section label {
+    font-weight: bold;
+}
+
+#end-section input {
+    height: 24px;
+    border-radius: 5px;
+    border: 2px solid #6bc1cc;
+    background-color: #f9f6fc;
+}
+
 
 .answer-list {
     width: 40%;
