@@ -7,6 +7,8 @@ var startButton = introSectionEl.querySelector("button");
 //Variables for the quiz element logic
 var quizSectionEl = document.querySelector("#quiz-section");
 var mainPageEl = document.querySelector("main");
+var timerEl = document.querySelector("#timer");
+var timeValue = 0;
 
 //Quiz questions object, which contains 15 question objects, each with a question string,
 //an answers array of strings, and a correct answer, which is an index of the answers array.
@@ -27,7 +29,7 @@ var quizQuestions = [
         number: 3,
         question: "How would you access the 'length' property of an array using JavaScript?",
         answers: ["array.length()", "array.length", "len(array)", "array[].length"],
-        correct: ""
+        correct: "array.length"
     },
     question4 = {
         number: 4,
@@ -121,6 +123,10 @@ var startQuiz = function() {
 
     var questionCounter = 0;
 
+    //Set timer
+    timeValue += 100;
+    timerEl.textContent = "Time: "+timeValue;
+
     //Call the function that will loop through the quizQuestions object
     for (var i = 0; i < quizQuestions.length; i++) {
         if (questionCounter + 1 == quizQuestions[i].number) {
@@ -161,11 +167,21 @@ var showQuestion = function(questionObj) {
 
 //Function that progresses to the next quiz question
 var nextQuestion = function(event) {
+
     if (event.target.getAttribute("class") === "answer") {
 
         //Iterate through the quizQuestions array and find the object that matches,
         //assign it to var questionObj
         var quizAnswers = document.getElementsByTagName("li");
+
+        //Loop through the li elements and find the one that event corresponds with
+        answerIndex = 0;
+        for (var i = 0; i < quizAnswers.length; i++) {
+            if (event.target.textContent === quizAnswers[i].textContent) {
+                answerIndex = i;
+                console.log("answerIndex:", answerIndex);
+            }
+        }
 
         var questionObj = {};
 
@@ -174,22 +190,73 @@ var nextQuestion = function(event) {
         for (var i = 0; i < quizQuestions.length; i++) {
             if (quizAnswers[0].textContent === quizQuestions[i].answers[0] && quizAnswers[1].textContent === quizQuestions[i].answers[1]) {
                 //Assign questionObj to the next question obj
-                questionObj = quizQuestions[i + 1];
+                questionObj = quizQuestions[i];
+                nextQuestionObj = quizQuestions[i + 1];
             }
         }
 
         //Select the question and update its text content
         var quizQuestionEl = document.querySelector("h2");
         console.log("questionObj: ", questionObj);
-        quizQuestionEl.textContent = questionObj.question;
+        quizQuestionEl.textContent = nextQuestionObj.question;
 
 
         //Update the textContent for each of the 4 answer elements
         for (var i = 0; i < quizAnswers.length; i++) {
-            console.log("replacing"+quizAnswers[i].textContent+" with "+questionObj.answers[i]+"...");
-            quizAnswers[i].textContent = questionObj.answers[i]; 
+            quizAnswers[i].textContent = nextQuestionObj.answers[i]; 
         }
 
+        /*Check the user's selected answer against the correct answer and display message below.
+        Decrement time/score if the user selected an incorrect answer.*/
+        correctIndex = 0;
+
+        for (var i = 0; i < questionObj.answers.length; i++) {
+            if (questionObj.answers[i] === questionObj.correct) {
+                console.log(questionObj.answers[i]+" matches "+questionObj.correct);
+                console.log("index of correct answer in the array:", i);
+                correctIndex = i;
+            }
+        }
+        checkAnswer(answerIndex, correctIndex);
+
+    }
+}
+
+var checkAnswer = function(guess, answer) {
+
+    console.log("guess:", guess);
+    console.log("answer:", answer);
+
+    var message = mainPageEl.querySelector("h3");
+
+    //Check whether the main page already has an h3 element
+    if (mainPageEl.querySelector("h3") === null) {
+        message = document.createElement("h3");
+    };
+
+
+    //Define the messages to display on true/false conditions
+    var correctMessage = "Correct!";
+    var incorrectMessage = "Incorrect.";
+
+    //Compare guess against answer
+    if (guess === answer) {
+        //Define elements and methods that will display messages
+        message.textContent = correctMessage;
+        message.className = "message";
+        mainPageEl.appendChild(message);
+
+        //Do not decrement time
+    }
+
+    else {
+        message.textContent = incorrectMessage;
+        message.className = "message";
+        mainPageEl.appendChild(message);
+
+        //Decrement the time element
+        timeValue -= 10;
+        timerEl.textContent = "Time: "+timeValue;
     }
 }
 
