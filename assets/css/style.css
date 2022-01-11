@@ -79,6 +79,7 @@ section {
 }
 
 #end-section {
+    display: none;
     justify-content: center;
 }
 

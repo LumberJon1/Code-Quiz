@@ -4,6 +4,9 @@ var introTitleEl = introSectionEl.querySelector("h1");
 var introDescriptionEl = introSectionEl.querySelector("p");
 var startButton = introSectionEl.querySelector("button");
 
+//variables for the end screen logic
+var endScreenEl = document.querySelector("#end-section");
+
 //Variables for the quiz element logic
 var quizSectionEl = document.querySelector("#quiz-section");
 var mainPageEl = document.querySelector("main");
@@ -263,18 +266,52 @@ var toggleQuestions = function() {
     }
 }
 
+var toggleEndScreen = function() {
+    if (endScreenEl.style.display === "none") {
+        endScreenEl.style.display = "flex";    
+    }
+    else {
+        endScreenEl.style.display = "none";
+    }
+}
+
 var endQuiz = function() {
     //Clear the quiz answer elements from the display
     toggleQuestions();
+    endScreenEl.style.display = "flex";
+    //toggleEndScreen();
 
     //Define elements to show in their place
+    endTitleEl = document.createElement("h2");
+    endTitleEl.textContent = "All Done!"
 
-    //All Done!
-    //Your final score is: <score>
-    //Enter Initials [..........] (text field)
-    //Retry button ..... //Submit button
+    endScoreEl = document.createElement("p");
+    endScoreEl.textContent = "Your final score is: "+timeValue;
 
-    
+    scoreFormEl = document.createElement("form");
+    nameLabelEl = document.createElement("label");
+    nameLabelEl.textContent = "Enter your name";
+    nameInputEl = document.createElement("input");
+    nameInputEl.setAttribute("type", "text");
+
+    buttonDivEl = document.createElement("div");
+    retryButtonEl = document.createElement("button");
+    retryButtonEl.textContent = "Retry";
+    submitButtonEl = document.createElement("button");
+    submitButtonEl.setAttribute("type", "submit");
+    submitButtonEl.textContent = "Submit Score";
+
+
+    endScreenEl.appendChild(endTitleEl);
+    endScreenEl.appendChild(endScoreEl);
+    endScreenEl.appendChild(scoreFormEl);
+    endScreenEl.appendChild(buttonDivEl);
+
+    scoreFormEl.appendChild(nameLabelEl);
+    scoreFormEl.appendChild(nameInputEl);
+
+    buttonDivEl.appendChild(retryButtonEl);
+    buttonDivEl.appendChild(submitButtonEl);    
 }
 
 //Event listeners for the intro page
@@ -285,3 +322,4 @@ mainPageEl.addEventListener("click", nextQuestion);
 
 //Event listeners for the end page
 
+endQuiz();
