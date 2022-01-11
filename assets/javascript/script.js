@@ -120,7 +120,8 @@ var toggleIntro = function() {
 
 var startQuiz = function() {
     //Toggle display of both the intro and the quiz sections
-    toggleIntro();
+    introSectionEl.style.display = "none";
+    endScreenEl.style.display = "none";
     //I would like to use the toggle() function but for some reason it doesn't work on the first run.
     quizSectionEl.style.display = "flex";
 
@@ -277,7 +278,8 @@ var toggleEndScreen = function() {
 
 var endQuiz = function() {
     //Clear the quiz answer elements from the display
-    toggleQuestions();
+    introSectionEl.style.display = "none";
+    quizSectionEl.style.display = "none";
     endScreenEl.style.display = "flex";
     //toggleEndScreen();
 
@@ -309,9 +311,27 @@ var endQuiz = function() {
 
     scoreFormEl.appendChild(nameLabelEl);
     scoreFormEl.appendChild(nameInputEl);
+    scoreFormEl.appendChild(buttonDivEl);
 
     buttonDivEl.appendChild(retryButtonEl);
-    buttonDivEl.appendChild(submitButtonEl);    
+    buttonDivEl.appendChild(submitButtonEl);
+
+    submitButtonEl.addEventListener("click", viewHighScores);
+    retryButtonEl.addEventListener("click", startQuiz);
+    
+}
+
+var viewHighScores = function(event) {
+
+    event.preventDefault();
+    
+    //Clear displays of all information other than the high scores
+    endScreenEl.style.display = "none";
+    quizSectionEl.style.display = "none";
+    introSectionEl.style.display = "none";
+
+    console.log("viewing high scores");
+
 }
 
 //Event listeners for the intro page
@@ -319,7 +339,3 @@ startButton.addEventListener("click", startQuiz);
 
 //Event listeners for the quiz pages
 mainPageEl.addEventListener("click", nextQuestion);
-
-//Event listeners for the end page
-
-endQuiz();
