@@ -179,7 +179,6 @@ var nextQuestion = function(event) {
         for (var i = 0; i < quizAnswers.length; i++) {
             if (event.target.textContent === quizAnswers[i].textContent) {
                 answerIndex = i;
-                console.log("answerIndex:", answerIndex);
             }
         }
 
@@ -197,7 +196,6 @@ var nextQuestion = function(event) {
 
         //Select the question and update its text content
         var quizQuestionEl = document.querySelector("h2");
-        console.log("questionObj: ", questionObj);
         quizQuestionEl.textContent = nextQuestionObj.question;
 
 
@@ -212,8 +210,6 @@ var nextQuestion = function(event) {
 
         for (var i = 0; i < questionObj.answers.length; i++) {
             if (questionObj.answers[i] === questionObj.correct) {
-                console.log(questionObj.answers[i]+" matches "+questionObj.correct);
-                console.log("index of correct answer in the array:", i);
                 correctIndex = i;
             }
         }
@@ -223,9 +219,6 @@ var nextQuestion = function(event) {
 }
 
 var checkAnswer = function(guess, answer) {
-
-    console.log("guess:", guess);
-    console.log("answer:", answer);
 
     var message = mainPageEl.querySelector("h3");
 
@@ -271,9 +264,9 @@ var toggleQuestions = function() {
     }
 }
 
-//Function to assess the correctness of a user answer
-
-//Function to decrement the time/score
+var endQuiz = function() {
+    
+}
 
 //Event listeners for the intro page
 startButton.addEventListener("click", startQuiz);
