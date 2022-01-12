@@ -375,6 +375,7 @@ var viewHighScores = function(event) {
         //create div and buttons
         var scoresButtonDivEl = document.createElement("div");
         var goBackButton = document.createElement("button");
+        goBackButton.setAttribute("id", "go-back-button");
         var clearScoresButton = document.createElement("button");
         goBackButton.textContent = "Go Back";
         clearScoresButton.textContent = "Clear Scores";
@@ -393,7 +394,14 @@ var viewHighScores = function(event) {
     else {
         //Modify the textContent of the existing elements
         console.log("Modifying existing elements...");
-        
+
+        for (var i = 0; i < highScores.length; i++) {
+            let scoresList = document.getElementsByTagName("li");
+            console.log("scoresListEl", scoresList);
+            console.log("scoresListEl[i]", scoresList[i]);
+            scoresList[i].textContent = highScores[i].name+": "+highScores[i].score;
+        }
+
     }
 
 }
