@@ -8,6 +8,24 @@ var highScoresButtonEl = document.querySelector("#high-scores-button");
 //variables for the end screen logic
 var endScreenEl = document.querySelector("#end-section");
 
+//Variables for the high score screen logic
+highScoresEl = document.querySelector("#high-scores-section");
+highScores = [
+    score1 = {
+        name: "AB",
+        score: 100
+    },
+    score2 = {
+        name: "CD",
+        score: 90
+    },
+    score3 = {
+        name: "EF",
+        score: 20
+    }
+];
+
+
 //Variables for the quiz element logic
 var quizSectionEl = document.querySelector("#quiz-section");
 var mainPageEl = document.querySelector("main");
@@ -123,6 +141,7 @@ var startQuiz = function() {
     //Toggle display of both the intro and the quiz sections
     introSectionEl.style.display = "none";
     endScreenEl.style.display = "none";
+    highScoresEl.style.display = "none"
     //I would like to use the toggle() function but for some reason it doesn't work on the first run.
     quizSectionEl.style.display = "flex";
 
@@ -337,35 +356,45 @@ var viewHighScores = function(event) {
     //Define the high scores
 
     //Load elements
-    highScoresEl = document.querySelector("#high-scores-section");
 
     //Check to see whether the high scores section already contains elements
     if (highScoresEl.querySelector("#go-back-button") === null) {
         console.log("No high scores elements yet...");
+        //Create title element
+        var scoresTitleEl = document.createElement("h2");
+        scoresTitleEl.textContent = "High Scores";
 
-        //create elements
+        scoresListEl = document.createElement("ul");
+        //Append a new child for every entry within the highScores array
+        for (var i = 0; i < highScores.length; i++) {
+            var newScore = document.createElement("li");
+            newScore.textContent = highScores[i].name+": "+highScores[i].score;
+            scoresListEl.appendChild(newScore);
+        }
+
+        //create div and buttons
+        var scoresButtonDivEl = document.createElement("div");
+        var goBackButton = document.createElement("button");
+        var clearScoresButton = document.createElement("button");
+        goBackButton.textContent = "Go Back";
+        clearScoresButton.textContent = "Clear Scores";
+
+        //Append to the div
+        scoresButtonDivEl.appendChild(goBackButton);
+        scoresButtonDivEl.appendChild(clearScoresButton);
+
+
+        //Append the items to the high score screen
+        highScoresEl.appendChild(scoresTitleEl);
+        highScoresEl.appendChild(scoresListEl);
+        highScoresEl.appendChild(scoresButtonDivEl);
 
     }
     else {
         //Modify the textContent of the existing elements
         console.log("Modifying existing elements...");
+        
     }
-
-    //Populate the elements with values from the high scores storage
-
-
-
-    // <h2>High Scores</h2>
-    // <ul>
-    //     <li>AB: 60</li>
-    //     <li>CD: 70</li>
-    //     <li>EF: 80</li>
-    // </ul>
-
-    // <div>
-    //     <button id="go-back-button">Go Back</button>
-    //     <button id="clear-scores-button">Clear Scores</button>
-    // </div>
 
 }
 
