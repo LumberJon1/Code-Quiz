@@ -3,6 +3,7 @@ var introSectionEl = document.querySelector("#intro-section");
 var introTitleEl = introSectionEl.querySelector("h1");
 var introDescriptionEl = introSectionEl.querySelector("p");
 var startButton = introSectionEl.querySelector("button");
+var highScoresButtonEl = document.querySelector("#high-scores-button");
 
 //variables for the end screen logic
 var endScreenEl = document.querySelector("#end-section");
@@ -331,6 +332,40 @@ var viewHighScores = function(event) {
     introSectionEl.style.display = "none";
 
     console.log("viewing high scores");
+    //Load the high scores display
+
+    //Define the high scores
+
+    //Load elements
+    highScoresEl = document.querySelector("#high-scores-section");
+
+    //Check to see whether the high scores section already contains elements
+    if (highScoresEl.querySelector("#go-back-button") === null) {
+        console.log("No high scores elements yet...");
+
+        //create elements
+
+    }
+    else {
+        //Modify the textContent of the existing elements
+        console.log("Modifying existing elements...");
+    }
+
+    //Populate the elements with values from the high scores storage
+
+
+
+    // <h2>High Scores</h2>
+    // <ul>
+    //     <li>AB: 60</li>
+    //     <li>CD: 70</li>
+    //     <li>EF: 80</li>
+    // </ul>
+
+    // <div>
+    //     <button id="go-back-button">Go Back</button>
+    //     <button id="clear-scores-button">Clear Scores</button>
+    // </div>
 
 }
 
@@ -339,3 +374,6 @@ startButton.addEventListener("click", startQuiz);
 
 //Event listeners for the quiz pages
 mainPageEl.addEventListener("click", nextQuestion);
+
+//Event listeners for the high scores button
+highScoresButtonEl.addEventListener("click", viewHighScores);

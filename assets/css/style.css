@@ -109,6 +109,28 @@ section {
     background-color: #f9f6fc;
 }
 
+#high-scores-section {
+    justify-content: center;
+}
+
+#high-scores-section h2, ul {
+    margin-bottom: 5%;
+}
+
+#high-scores-section ul {
+    list-style: none;
+    font-weight: bold;
+    letter-spacing: 0.5vw;
+    line-height: 1.8vh;
+}
+
+#high-scores-section div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 45px;
+}
+
 
 .answer-list {
     width: 40%;
