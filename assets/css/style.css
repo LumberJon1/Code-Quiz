@@ -66,8 +66,9 @@ section {
 /*Quiz section styling*/
 
 #quiz-section h2 {
-    width: 100%;
+    width: 80%;
     padding: 0 30px;
+    text-align: center;
     align-self: center;
 }
 

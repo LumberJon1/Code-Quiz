@@ -9,8 +9,8 @@ var highScoresButtonEl = document.querySelector("#high-scores-button");
 var endScreenEl = document.querySelector("#end-section");
 
 //Variables for the high score screen logic
-highScoresEl = document.querySelector("#high-scores-section");
-highScores = [
+var highScoresEl = document.querySelector("#high-scores-section");
+var highScores = [
     score1 = {
         name: "AB",
         score: 100
@@ -377,6 +377,7 @@ var viewHighScores = function(event) {
         var goBackButton = document.createElement("button");
         goBackButton.setAttribute("id", "go-back-button");
         var clearScoresButton = document.createElement("button");
+        clearScoresButton.setAttribute("id", "clear-scores-button");
         goBackButton.textContent = "Go Back";
         clearScoresButton.textContent = "Clear Scores";
 
@@ -390,6 +391,10 @@ var viewHighScores = function(event) {
         highScoresEl.appendChild(scoresListEl);
         highScoresEl.appendChild(scoresButtonDivEl);
 
+        //Event listeners for the goBackButton and clearScoresButtons
+        goBackButton.addEventListener("click", toggleHighScores);
+        clearScoresButton.addEventListener("click", clearScores);
+
     }
     else {
         //Modify the textContent of the existing elements
@@ -399,9 +404,31 @@ var viewHighScores = function(event) {
             let scoresList = document.getElementsByTagName("li");
             console.log("scoresListEl", scoresList);
             console.log("scoresListEl[i]", scoresList[i]);
-            scoresList[i].textContent = highScores[i].name+": "+highScores[i].score;
+            scoresList[i].textContent = highScores[i].name+" "+highScores[i].score;
         }
 
+    }
+
+}
+
+//toggle high scores and return to previous screen on click of goBackButton
+var toggleHighScores = function() {
+    console.log("closing high scores screen");
+    
+}
+
+//clear scores from array
+var clearScores = function() {
+    console.log("clearing scores...");
+    for (var i = 0; i < highScores.length; i++) {
+        highScores[i].name = "";
+        highScores[i].score = ""
+    }
+
+    //Change the textContent to reflect the empty values
+    for (var i = 0; i < highScores.length; i++) {
+        let scoresList = document.getElementsByTagName("li");
+        scoresList[i].textContent = "";
     }
 
 }
