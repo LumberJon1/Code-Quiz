@@ -55,75 +55,75 @@ var quizQuestions = [
     },
     question4 = {
         number: 4,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "What is the method that appends an item to the end of a JavaScript array?",
+        answers: ["array.push()", "array.pushItem()", "array.append()", "array.add()"],
+        correct: "array.push()"
     },
     question5 = {
         number: 5,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "What method makes a JSON object readable by localStorage?",
+        answers: ["JASON.stringify()", "JSON.readable()", "JSON.stringify()", "JSON.parse()"],
+        correct: "JSON.stringify()"
     },
     question6 = {
         number: 6,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "Which of the following operators is strict comparison?",
+        answers: ["=", "==", "===", "!="],
+        correct: "==="
     },
     question7 = {
         number: 7,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "What would the following code evaluate to?\nif (0 < 5 || 0 > 50) {};",
+        answers: ["true", "false", "True", "False"],
+        correct: "true"
     },
     question8 = {
         number: 8,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "Which attribute should every <img> element have?",
+        answers: ["background-position", "img", "alt", "id"],
+        correct: "alt"
     },
     question9 = {
         number: 9,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "In a CSS stylesheet, what kind of selector is represented by '.'?",
+        answers: ["element", "class", "universal", "id"],
+        correct: "class"
     },
     question10 = {
         number: 10,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "How would one access the 'number' attribute of an object named 'question'?",
+        answers: ["question[number]", "question.number()", "question.number", "question(number)"],
+        correct: "question.number"
     },
     question11 = {
         number: 11,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "What method will allow form submission on a webpage to be handled by JavaScript?",
+        answers: [".preventDefault()", ".allow()", ".javaHandler()", ".formAllow()"],
+        correct: ".preventDefault()"
     },
     question12 = {
         number: 12,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "What does the && comparison operator do?",
+        answers: ["Checks whether two expressions are both true", "Checks whether two expressions are both false", "Checks whether two expressions are strictly equal", "Checks whether either of two expressions are true"],
+        correct: "Checks whether two expressions are both true"
     },
     question13 = {
         number: 13,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "Which git command creates and checks out into a new branch?",
+        answers: ["git checkout new", "git checkout -b", "git branch checkout", "git checkout new branch"],
+        correct: "git checkout -b"
     },
     question14 = {
         number: 14,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "What is the syntax to listen for a click event and call the runCommand() function?",
+        answers: ["addEventListener(click, runCommand)", "addEventListener('click', runCommand)", "addEventListener('click', runCommand()", "addEventListener('click', runCommand())"],
+        correct: "addEventListener('click', runCommand())"
     },
     question15 = {
         number: 15,
-        question: "",
-        answers: ["", "", "", ""],
-        correct: ""
+        question: "Which of the following operators would return false? \nif(0 ___ 0) {};",
+        answers: ["==", "===", "<=", "!="],
+        correct: "!="
     },
 ];
 
