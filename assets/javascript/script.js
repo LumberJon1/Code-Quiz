@@ -352,6 +352,7 @@ var viewHighScores = function(event) {
 
     console.log("viewing high scores");
     //Load the high scores display
+    toggleHighScores();
 
     //Define the high scores
 
@@ -413,8 +414,22 @@ var viewHighScores = function(event) {
 
 //toggle high scores and return to previous screen on click of goBackButton
 var toggleHighScores = function() {
-    console.log("closing high scores screen");
-    
+    if (highScoresEl.style.display === "flex") {
+
+        console.log("Display is currently "+highScoresEl.style.display+".  Changing to 'none'.");
+        highScoresEl.style.display = "none";
+        console.log("display is now", highScoresEl.style.display);
+        highScoresEl.style.zIndex = "2";
+        console.log("Z-index:", highScoresEl.style.zIndex);
+    }
+    else {
+        console.log("Display is currently "+highScoresEl.style.display+".  Changing to 'flex'.");
+        highScoresEl.style.display = "flex";
+        console.log("display is now", highScoresEl.style.display);
+        highScoresEl.style.zIndex = "0";
+        console.log("Z-index:", highScoresEl.style.zIndex);
+    }
+
 }
 
 //clear scores from array
