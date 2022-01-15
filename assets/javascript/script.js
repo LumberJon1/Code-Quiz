@@ -154,13 +154,10 @@ var startQuiz = function() {
     //Call the function that will loop through the quizQuestions object
     for (var i = 0; i < quizQuestions.length; i++) {
         if (questionCounter + 1 == quizQuestions[i].number) {
-            showQuestion(quizQuestions[i]);
+            if (i + 1 != quizQuestions.length) {
+                showQuestion(quizQuestions[i]);
+            }
         }
-
-        //Call function to evaluate the answer and progress to the next object
-
-
-        // It will also perform questionCounter++;
     }
 }
 
@@ -191,6 +188,9 @@ var showQuestion = function(questionObj) {
 
 //Function that progresses to the next quiz question
 var nextQuestion = function(event) {
+
+    //Function needs to check for the existence of a next question
+
 
     if (event.target.getAttribute("class") === "answer") {
 
