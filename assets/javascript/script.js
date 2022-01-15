@@ -357,11 +357,6 @@ var endQuiz = function() {
 var viewHighScores = function(event) {
 
     event.preventDefault();
-    
-    //Clear displays of all information other than the high scores
-    endScreenEl.style.display = "none";
-    quizSectionEl.style.display = "none";
-    introSectionEl.style.display = "none";
 
     //Load the high scores display
     toggleHighScores();
@@ -429,15 +424,23 @@ var toggleHighScores = function() {
 
         console.log("Display is currently "+highScoresEl.style.display+".  Changing to 'none'.");
         highScoresEl.style.display = "none";
+        highScoresEl.style.position = "relative";
         console.log("display is now", highScoresEl.style.display);
-        highScoresEl.style.zIndex = "2";
+        highScoresEl.style.zIndex = "0";
         console.log("Z-index:", highScoresEl.style.zIndex);
     }
     else {
+        //Allow the high scores screen to be brought forward with z-index and change its styles to cover the other sections
         console.log("Display is currently "+highScoresEl.style.display+".  Changing to 'flex'.");
         highScoresEl.style.display = "flex";
+        highScoresEl.style.position = "fixed";
+        highScoresEl.style.top = "0";
+        highScoresEl.style.left = "10%";
+        highScoresEl.style.width = "80%";
+        highScoresEl.style.backgroundColor = "white";
+        highScoresEl.style.height = "600px";
         console.log("display is now", highScoresEl.style.display);
-        highScoresEl.style.zIndex = "0";
+        highScoresEl.style.zIndex = "2";
         console.log("Z-index:", highScoresEl.style.zIndex);
     }
 
