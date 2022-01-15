@@ -29,6 +29,7 @@ var highScores = [
 //Variables for the quiz element logic
 var quizSectionEl = document.querySelector("#quiz-section");
 var mainPageEl = document.querySelector("main");
+var questionCounter = 1;
 var timerEl = document.querySelector("#timer");
 var timeValue = 0;
 
@@ -59,72 +60,72 @@ var quizQuestions = [
         answers: ["array.push()", "array.pushItem()", "array.append()", "array.add()"],
         correct: "array.push()"
     },
-    question5 = {
-        number: 5,
-        question: "What method makes a JSON object readable by localStorage?",
-        answers: ["JASON.stringify()", "JSON.readable()", "JSON.stringify()", "JSON.parse()"],
-        correct: "JSON.stringify()"
-    },
-    question6 = {
-        number: 6,
-        question: "Which of the following operators is strict comparison?",
-        answers: ["=", "==", "===", "!="],
-        correct: "==="
-    },
-    question7 = {
-        number: 7,
-        question: "What would the following code evaluate to?\nif (0 < 5 || 0 > 50) {};",
-        answers: ["true", "false", "True", "False"],
-        correct: "true"
-    },
-    question8 = {
-        number: 8,
-        question: "Which attribute should every <img> element have?",
-        answers: ["background-position", "img", "alt", "id"],
-        correct: "alt"
-    },
-    question9 = {
-        number: 9,
-        question: "In a CSS stylesheet, what kind of selector is represented by '.'?",
-        answers: ["element", "class", "universal", "id"],
-        correct: "class"
-    },
-    question10 = {
-        number: 10,
-        question: "How would one access the 'number' attribute of an object named 'question'?",
-        answers: ["question[number]", "question.number()", "question.number", "question(number)"],
-        correct: "question.number"
-    },
-    question11 = {
-        number: 11,
-        question: "What method will allow form submission on a webpage to be handled by JavaScript?",
-        answers: [".preventDefault()", ".allow()", ".javaHandler()", ".formAllow()"],
-        correct: ".preventDefault()"
-    },
-    question12 = {
-        number: 12,
-        question: "What does the && comparison operator do?",
-        answers: ["Checks whether two expressions are both true", "Checks whether two expressions are both false", "Checks whether two expressions are strictly equal", "Checks whether either of two expressions are true"],
-        correct: "Checks whether two expressions are both true"
-    },
-    question13 = {
-        number: 13,
-        question: "Which git command creates and checks out into a new branch?",
-        answers: ["git checkout new", "git checkout -b", "git branch checkout", "git checkout new branch"],
-        correct: "git checkout -b"
-    },
-    question14 = {
-        number: 14,
-        question: "What is the syntax to listen for a click event and call the runCommand() function?",
-        answers: ["addEventListener(click, runCommand)", "addEventListener('click', runCommand)", "addEventListener('click', runCommand()", "addEventListener('click', runCommand())"],
-        correct: "addEventListener('click', runCommand())"
-    },
-    question15 = {
-        number: 15,
-        question: "Which of the following operators would return false? \nif(0 ___ 0) {};",
-        answers: ["==", "===", "<=", "!="],
-        correct: "!="
-    },
+    // question5 = {
+    //     number: 5,
+    //     question: "What method makes a JSON object readable by localStorage?",
+    //     answers: ["JASON.stringify()", "JSON.readable()", "JSON.stringify()", "JSON.parse()"],
+    //     correct: "JSON.stringify()"
+    // },
+    // question6 = {
+    //     number: 6,
+    //     question: "Which of the following operators is strict comparison?",
+    //     answers: ["=", "==", "===", "!="],
+    //     correct: "==="
+    // },
+    // question7 = {
+    //     number: 7,
+    //     question: "What would the following code evaluate to?\nif (0 < 5 || 0 > 50) {};",
+    //     answers: ["true", "false", "True", "False"],
+    //     correct: "true"
+    // },
+    // question8 = {
+    //     number: 8,
+    //     question: "Which attribute should every <img> element have?",
+    //     answers: ["background-position", "img", "alt", "id"],
+    //     correct: "alt"
+    // },
+    // question9 = {
+    //     number: 9,
+    //     question: "In a CSS stylesheet, what kind of selector is represented by '.'?",
+    //     answers: ["element", "class", "universal", "id"],
+    //     correct: "class"
+    // },
+    // question10 = {
+    //     number: 10,
+    //     question: "How would one access the 'number' attribute of an object named 'question'?",
+    //     answers: ["question[number]", "question.number()", "question.number", "question(number)"],
+    //     correct: "question.number"
+    // },
+    // question11 = {
+    //     number: 11,
+    //     question: "What method will allow form submission on a webpage to be handled by JavaScript?",
+    //     answers: [".preventDefault()", ".allow()", ".javaHandler()", ".formAllow()"],
+    //     correct: ".preventDefault()"
+    // },
+    // question12 = {
+    //     number: 12,
+    //     question: "What does the && comparison operator do?",
+    //     answers: ["Checks whether two expressions are both true", "Checks whether two expressions are both false", "Checks whether two expressions are strictly equal", "Checks whether either of two expressions are true"],
+    //     correct: "Checks whether two expressions are both true"
+    // },
+    // question13 = {
+    //     number: 13,
+    //     question: "Which git command creates and checks out into a new branch?",
+    //     answers: ["git checkout new", "git checkout -b", "git branch checkout", "git checkout new branch"],
+    //     correct: "git checkout -b"
+    // },
+    // question14 = {
+    //     number: 14,
+    //     question: "What is the syntax to listen for a click event and call the runCommand() function?",
+    //     answers: ["addEventListener(click, runCommand)", "addEventListener('click', runCommand)", "addEventListener('click', runCommand()", "addEventListener('click', runCommand())"],
+    //     correct: "addEventListener('click', runCommand())"
+    // },
+    // question15 = {
+    //     number: 15,
+    //     question: "Which of the following operators would return false? \nif(0 ___ 0) {};",
+    //     answers: ["==", "===", "<=", "!="],
+    //     correct: "!="
+    // },
 ];
 
 //Function to toggle the display of the intro page
@@ -145,18 +146,15 @@ var startQuiz = function() {
     //I would like to use the toggle() function but for some reason it doesn't work on the first run.
     quizSectionEl.style.display = "flex";
 
-    var questionCounter = 0;
-
     //Set timer
     timeValue += 100;
     timerEl.textContent = "Time: "+timeValue;
 
-    //Call the function that will loop through the quizQuestions object
+    //Loop through the questions and display the current question
     for (var i = 0; i < quizQuestions.length; i++) {
-        if (questionCounter + 1 == quizQuestions[i].number) {
-            if (i + 1 != quizQuestions.length) {
-                showQuestion(quizQuestions[i]);
-            }
+        if (quizQuestions[i].number == questionCounter) {
+            questionObj = quizQuestions[i];
+            showQuestion(questionObj);
         }
     }
 }
@@ -184,61 +182,70 @@ var showQuestion = function(questionObj) {
         answerListEl.appendChild(answerEl);
     }
 
+    //Event listener to call nextQuestion only when we are not on the last question
+    if (questionObj.number == quizQuestions.length) {
+    }
+    else {
+        mainPageEl.addEventListener("click", nextQuestion);
+    }
 }
 
 //Function that progresses to the next quiz question
 var nextQuestion = function(event) {
 
-    //Function needs to check for the existence of a next question
+    if (questionCounter != quizQuestions.length) {
+        if (event.target.getAttribute("class") === "answer") {
 
-
-    if (event.target.getAttribute("class") === "answer") {
-
-        //Iterate through the quizQuestions array and find the object that matches,
-        //assign it to var questionObj
-        var quizAnswers = document.getElementsByTagName("li");
-
-        //Loop through the li elements and find the one that event corresponds with
-        answerIndex = 0;
-        for (var i = 0; i < quizAnswers.length; i++) {
-            if (event.target.textContent === quizAnswers[i].textContent) {
-                answerIndex = i;
+            //Iterate through the quizQuestions array and find the object that matches,
+            //assign it to var questionObj
+            var quizAnswers = document.getElementsByTagName("li");
+    
+            //Loop through the li elements and find the one that event corresponds with
+            answerIndex = 0;
+            for (var i = 0; i < quizAnswers.length; i++) {
+                if (event.target.textContent === quizAnswers[i].textContent) {
+                    answerIndex = i;
+                }
             }
-        }
-
-        var questionObj = {};
-
-        /*Check whether each of the answers in the <li> element matches any of the 
-        answers in the quizQuestions in the array*/
-        for (var i = 0; i < quizQuestions.length; i++) {
-            if (quizAnswers[0].textContent === quizQuestions[i].answers[0] && quizAnswers[1].textContent === quizQuestions[i].answers[1]) {
-                //Assign questionObj to the next question obj
-                questionObj = quizQuestions[i];
-                nextQuestionObj = quizQuestions[i + 1];
+    
+            var questionObj = {};
+    
+            /*Check whether each of the answers in the <li> element matches any of the 
+            answers in the quizQuestions in the array*/
+            for (var i = 0; i < quizQuestions.length; i++) {
+                if (quizAnswers[0].textContent === quizQuestions[i].answers[0] && quizAnswers[1].textContent === quizQuestions[i].answers[1]) {
+                    //Assign questionObj to the next question obj
+                    questionObj = quizQuestions[i];
+                    nextQuestionObj = quizQuestions[i + 1];
+                }
             }
-        }
-
-        //Select the question and update its text content
-        var quizQuestionEl = document.querySelector("h2");
-        quizQuestionEl.textContent = nextQuestionObj.question;
-
-
-        //Update the textContent for each of the 4 answer elements
-        for (var i = 0; i < quizAnswers.length; i++) {
-            quizAnswers[i].textContent = nextQuestionObj.answers[i]; 
-        }
-
-        /*Check the user's selected answer against the correct answer and display message below.
-        Decrement time/score if the user selected an incorrect answer.*/
-        correctIndex = 0;
-
-        for (var i = 0; i < questionObj.answers.length; i++) {
-            if (questionObj.answers[i] === questionObj.correct) {
-                correctIndex = i;
+    
+            //Select the question and update its text content
+            var quizQuestionEl = document.querySelector("h2");
+            quizQuestionEl.textContent = nextQuestionObj.question;
+    
+    
+            //Update the textContent for each of the 4 answer elements
+            for (var i = 0; i < quizAnswers.length; i++) {
+                quizAnswers[i].textContent = nextQuestionObj.answers[i]; 
             }
+    
+            /*Check the user's selected answer against the correct answer and display message below.
+            Decrement time/score if the user selected an incorrect answer.*/
+            correctIndex = 0;
+    
+            for (var i = 0; i < questionObj.answers.length; i++) {
+                if (questionObj.answers[i] === questionObj.correct) {
+                    correctIndex = i;
+                }
+            }
+            checkAnswer(answerIndex, correctIndex);
         }
-        checkAnswer(answerIndex, correctIndex);
     }
+    //If this is the last quiz question, call the endQuiz function
+    else {
+        endQuiz();
+    } 
 }
 
 var checkAnswer = function(guess, answer) {
@@ -274,6 +281,9 @@ var checkAnswer = function(guess, answer) {
         timeValue -= 10;
         timerEl.textContent = "Time: "+timeValue;
     }
+
+    //Once user has checked answer, increment the questionCounter
+    questionCounter++;
 }
 
 
@@ -350,7 +360,6 @@ var viewHighScores = function(event) {
     quizSectionEl.style.display = "none";
     introSectionEl.style.display = "none";
 
-    console.log("viewing high scores");
     //Load the high scores display
     toggleHighScores();
 
@@ -360,7 +369,6 @@ var viewHighScores = function(event) {
 
     //Check to see whether the high scores section already contains elements
     if (highScoresEl.querySelector("#go-back-button") === null) {
-        console.log("No high scores elements yet...");
         //Create title element
         var scoresTitleEl = document.createElement("h2");
         scoresTitleEl.textContent = "High Scores";
@@ -450,9 +458,6 @@ var clearScores = function() {
 
 //Event listeners for the intro page
 startButton.addEventListener("click", startQuiz);
-
-//Event listeners for the quiz pages
-mainPageEl.addEventListener("click", nextQuestion);
 
 //Event listeners for the high scores button
 highScoresButtonEl.addEventListener("click", viewHighScores);
