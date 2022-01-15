@@ -313,42 +313,45 @@ var endQuiz = function() {
     endScreenEl.style.display = "flex";
     //toggleEndScreen();
 
-    //Define elements to show in their place
-    endTitleEl = document.createElement("h2");
-    endTitleEl.textContent = "All Done!"
+    //Check that endQuiz elements don't already exist
+    if (endScreenEl.querySelector("button") === null) {
+        
+        //Define elements to show in their place
+        endTitleEl = document.createElement("h2");
+        endTitleEl.textContent = "All Done!"
 
-    endScoreEl = document.createElement("p");
-    endScoreEl.textContent = "Your final score is: "+timeValue;
+        endScoreEl = document.createElement("p");
+        endScoreEl.textContent = "Your final score is: "+timeValue;
 
-    scoreFormEl = document.createElement("form");
-    nameLabelEl = document.createElement("label");
-    nameLabelEl.textContent = "Enter your name";
-    nameInputEl = document.createElement("input");
-    nameInputEl.setAttribute("type", "text");
+        scoreFormEl = document.createElement("form");
+        nameLabelEl = document.createElement("label");
+        nameLabelEl.textContent = "Enter your name";
+        nameInputEl = document.createElement("input");
+        nameInputEl.setAttribute("type", "text");
 
-    buttonDivEl = document.createElement("div");
-    retryButtonEl = document.createElement("button");
-    retryButtonEl.textContent = "Retry";
-    submitButtonEl = document.createElement("button");
-    submitButtonEl.setAttribute("type", "submit");
-    submitButtonEl.textContent = "Submit Score";
+        buttonDivEl = document.createElement("div");
+        retryButtonEl = document.createElement("button");
+        retryButtonEl.textContent = "Retry";
+        submitButtonEl = document.createElement("button");
+        submitButtonEl.setAttribute("type", "submit");
+        submitButtonEl.textContent = "Submit Score";
 
 
-    endScreenEl.appendChild(endTitleEl);
-    endScreenEl.appendChild(endScoreEl);
-    endScreenEl.appendChild(scoreFormEl);
-    endScreenEl.appendChild(buttonDivEl);
+        endScreenEl.appendChild(endTitleEl);
+        endScreenEl.appendChild(endScoreEl);
+        endScreenEl.appendChild(scoreFormEl);
+        endScreenEl.appendChild(buttonDivEl);
 
-    scoreFormEl.appendChild(nameLabelEl);
-    scoreFormEl.appendChild(nameInputEl);
-    scoreFormEl.appendChild(buttonDivEl);
+        scoreFormEl.appendChild(nameLabelEl);
+        scoreFormEl.appendChild(nameInputEl);
+        scoreFormEl.appendChild(buttonDivEl);
 
-    buttonDivEl.appendChild(retryButtonEl);
-    buttonDivEl.appendChild(submitButtonEl);
+        buttonDivEl.appendChild(retryButtonEl);
+        buttonDivEl.appendChild(submitButtonEl);
 
-    submitButtonEl.addEventListener("click", viewHighScores);
-    retryButtonEl.addEventListener("click", startQuiz);
-    
+        submitButtonEl.addEventListener("click", viewHighScores);
+        retryButtonEl.addEventListener("click", startQuiz);
+    }   
 }
 
 var viewHighScores = function(event) {
