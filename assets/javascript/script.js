@@ -10,20 +10,7 @@ var endScreenEl = document.querySelector("#end-section");
 
 //Variables for the high score screen logic
 var highScoresEl = document.querySelector("#high-scores-section");
-var highScores = [
-    score1 = {
-        name: "AB",
-        score: 100
-    },
-    score2 = {
-        name: "CD",
-        score: 90
-    },
-    score3 = {
-        name: "EF",
-        score: 20
-    }
-];
+var highScores = [];
 
 
 //Variables for the quiz element logic
@@ -357,9 +344,26 @@ var endQuiz = function() {
         buttonDivEl.appendChild(retryButtonEl);
         buttonDivEl.appendChild(submitButtonEl);
 
-        submitButtonEl.addEventListener("click", viewHighScores);
+        submitButtonEl.addEventListener("click", submitScores);
         retryButtonEl.addEventListener("click", startQuiz);
     }   
+}
+
+var submitScores = function(event) {
+    event.preventDefault();
+    console.log("Worked");
+    //Take the form submission
+    var scoreName = document.querySelector("input").value;
+    var userScore = timeValue;
+    //Append that data to the highScores
+    highScores.push({name: scoreName, score: userScore});
+    console.log(highScores);
+
+    //Ensure the values of high scores are appended to localStorage
+    
+
+    viewHighScores(event);
+
 }
 
 var viewHighScores = function(event) {
