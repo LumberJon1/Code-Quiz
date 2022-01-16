@@ -139,6 +139,10 @@ var toggleIntro = function() {
 }
 
 var startQuiz = function() {
+
+    //reset questionCounter
+    questionCounter = 1;
+
     //Toggle display of both the intro and the quiz sections
     introSectionEl.style.display = "none";
     endScreenEl.style.display = "none";
@@ -163,30 +167,35 @@ var showQuestion = function(questionObj) {
     /*Takes an object from the quizQuestions object as a parameter and creates
     elements to display to the screen with its attributes*/
 
-    //Create and append the question h3 element to the quiz section
-    var quizQuestionEl = document.createElement("h2");
-    quizQuestionEl.textContent = questionObj.question;
-    quizSectionEl.appendChild(quizQuestionEl);
+    //Check whether the elements already exist
+    if (document.querySelector(".answer") === null) {
 
-    //create and append the 4 answer elements to an ol element inside quiz section
-    //with class answer-list
-    var answerListEl = document.createElement("ol");
-    answerListEl.className = "answer-list";
-    quizSectionEl.appendChild(answerListEl);
+        //Create and append the question h3 element to the quiz section
+        var quizQuestionEl = document.createElement("h2");
+        quizQuestionEl.textContent = questionObj.question;
+        quizSectionEl.appendChild(quizQuestionEl);
 
-    for (var i = 0; i < questionObj.answers.length; i++) {
-        var answerEl = document.createElement("li");
-        answerEl.textContent = questionObj.answers[i];
-        answerEl.className = "answer";
-        answerListEl.appendChild(answerEl);
-    }
+        //create and append the 4 answer elements to an ol element inside quiz section
+        //with class answer-list
+        var answerListEl = document.createElement("ol");
+        answerListEl.className = "answer-list";
+        quizSectionEl.appendChild(answerListEl);
 
-    //Event listener to call nextQuestion only when we are not on the last question
-    if (questionObj.number == quizQuestions.length) {
+        for (var i = 0; i < questionObj.answers.length; i++) {
+            var answerEl = document.createElement("li");
+            answerEl.textContent = questionObj.answers[i];
+            answerEl.className = "answer";
+            answerListEl.appendChild(answerEl);
+        }
+
+        //Event listener to call nextQuestion only when we are not on the last question
+        if (questionObj.number == quizQuestions.length) {
+        }
+        else {
+            answerListEl.addEventListener("click", nextQuestion);
+        }
     }
-    else {
-        answerListEl.addEventListener("click", nextQuestion);
-    }
+    //If they already exist, simply do nothing
 }
 
 //Function that progresses to the next quiz question
@@ -220,6 +229,7 @@ var nextQuestion = function(event) {
             }
     
             //Select the question and update its text content
+            console.log("questionObj:", questionObj);
             var quizQuestionEl = document.querySelector("h2");
             quizQuestionEl.textContent = nextQuestionObj.question;
     
