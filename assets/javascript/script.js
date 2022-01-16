@@ -31,7 +31,7 @@ var quizSectionEl = document.querySelector("#quiz-section");
 var mainPageEl = document.querySelector("main");
 var questionCounter = 1;
 var timerEl = document.querySelector("#timer");
-var timeValue = 0;
+var timeValue = 100;
 
 //Quiz questions object, which contains 15 question objects, each with a question string,
 //an answers array of strings, and a correct answer, which is an index of the answers array.
@@ -147,7 +147,6 @@ var startQuiz = function() {
     quizSectionEl.style.display = "flex";
 
     //Set timer
-    timeValue += 100;
     timerEl.textContent = "Time: "+timeValue;
 
     //Loop through the questions and display the current question
@@ -186,7 +185,7 @@ var showQuestion = function(questionObj) {
     if (questionObj.number == quizQuestions.length) {
     }
     else {
-        mainPageEl.addEventListener("click", nextQuestion);
+        answerListEl.addEventListener("click", nextQuestion);
     }
 }
 
@@ -311,7 +310,6 @@ var endQuiz = function() {
     introSectionEl.style.display = "none";
     quizSectionEl.style.display = "none";
     endScreenEl.style.display = "flex";
-    //toggleEndScreen();
 
     //Check that endQuiz elements don't already exist
     if (endScreenEl.querySelector("button") === null) {
@@ -399,7 +397,15 @@ var viewHighScores = function(event) {
         highScoresEl.appendChild(scoresButtonDivEl);
 
         //Event listeners for the goBackButton and clearScoresButtons
-        goBackButton.addEventListener("click", toggleHighScores);
+        if (questionCounter != quizQuestions.length) {
+
+            goBackButton.addEventListener("click", toggleHighScores);
+        }
+        else {
+            console.log("Restarting quiz");
+            goBackButton.addEventListener("click", startQuiz);
+            endScreenEl.style.display = "none";
+        }
         clearScoresButton.addEventListener("click", clearScores);
 
     }
@@ -420,18 +426,21 @@ var viewHighScores = function(event) {
 
 //toggle high scores and return to previous screen on click of goBackButton
 var toggleHighScores = function() {
-    if (highScoresEl.style.display === "flex") {
 
-        console.log("Display is currently "+highScoresEl.style.display+".  Changing to 'none'.");
+    //hide the endScreenEl if it has popped up from ending the quiz
+    console.log("endScreenEl.style.display:", endScreenEl.style.display);
+    if (endScreenEl.style.display != "none") {
+        endScreenEl.style.display = "none";
+        console.log("endScreenEl.style.display:", endScreenEl.style.display);
+    }
+
+    if (highScoresEl.style.display === "flex") {
         highScoresEl.style.display = "none";
         highScoresEl.style.position = "relative";
-        console.log("display is now", highScoresEl.style.display);
         highScoresEl.style.zIndex = "0";
-        console.log("Z-index:", highScoresEl.style.zIndex);
     }
     else {
         //Allow the high scores screen to be brought forward with z-index and change its styles to cover the other sections
-        console.log("Display is currently "+highScoresEl.style.display+".  Changing to 'flex'.");
         highScoresEl.style.display = "flex";
         highScoresEl.style.position = "fixed";
         highScoresEl.style.top = "0";
@@ -439,11 +448,8 @@ var toggleHighScores = function() {
         highScoresEl.style.width = "80%";
         highScoresEl.style.backgroundColor = "white";
         highScoresEl.style.height = "600px";
-        console.log("display is now", highScoresEl.style.display);
         highScoresEl.style.zIndex = "2";
-        console.log("Z-index:", highScoresEl.style.zIndex);
     }
-
 }
 
 //clear scores from array
