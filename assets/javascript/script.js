@@ -137,7 +137,17 @@ var startQuiz = function() {
     quizSectionEl.style.display = "flex";
 
     //Set timer
-    timerEl.textContent = "Time: "+timeValue;
+    timeValue = 10;
+    
+    setInterval(function() {
+        timerEl.textContent = "Time: "+timeValue;
+        timeValue--;
+        if (timeValue <= 0) {
+            clearInterval();
+            timeValue = 0;
+            endQuiz();
+        }
+    }, 1000);
 
     //Loop through the questions and display the current question
     for (var i = 0; i < quizQuestions.length; i++) {
