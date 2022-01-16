@@ -12,7 +12,6 @@ var endScreenEl = document.querySelector("#end-section");
 var highScoresEl = document.querySelector("#high-scores-section");
 var highScores = [];
 
-
 //Variables for the quiz element logic
 var quizSectionEl = document.querySelector("#quiz-section");
 var mainPageEl = document.querySelector("main");
@@ -216,7 +215,6 @@ var nextQuestion = function(event) {
             }
     
             //Select the question and update its text content
-            console.log("questionObj:", questionObj);
             var quizQuestionEl = document.querySelector("h2");
             quizQuestionEl.textContent = nextQuestionObj.question;
     
@@ -252,7 +250,6 @@ var checkAnswer = function(guess, answer) {
     if (mainPageEl.querySelector("h3") === null) {
         message = document.createElement("h3");
     };
-
 
     //Define the messages to display on true/false conditions
     var correctMessage = "Correct!";
@@ -331,7 +328,6 @@ var endQuiz = function() {
         submitButtonEl.setAttribute("type", "submit");
         submitButtonEl.textContent = "Submit Score";
 
-
         endScreenEl.appendChild(endTitleEl);
         endScreenEl.appendChild(endScoreEl);
         endScreenEl.appendChild(scoreFormEl);
@@ -351,7 +347,6 @@ var endQuiz = function() {
 
 var submitScores = function(event) {
     event.preventDefault();
-    console.log("Worked");
     //Take the form submission
     var scoreName = document.querySelector("input").value;
     var userScore = timeValue;
@@ -361,12 +356,8 @@ var submitScores = function(event) {
 
     //Ensure the values of high scores are appended to localStorage
     localStorage.setItem("high-scores", JSON.stringify(highScores));
-    console.log("Appended the following to localStorage:", localStorage.getItem("high-scores"));
-
-
 
     viewHighScores(event);
-
 }
 
 var viewHighScores = function(event) {
@@ -375,10 +366,6 @@ var viewHighScores = function(event) {
 
     //Load the high scores display
     toggleHighScores();
-
-    //Define the high scores
-
-    //Load elements
 
     //Check to see whether the high scores section already contains elements
     if (highScoresEl.querySelector("#go-back-button") === null) {
@@ -390,7 +377,6 @@ var viewHighScores = function(event) {
 
         //Pull the data from the localStorage object and load it into highScores
         highScores = JSON.parse(localStorage.getItem("high-scores"));
-        console.log("Parsed the following from localStorage into highScores:", highScores);
 
         //Append a new child for every entry within the highScores array
         for (var i = 0; i < highScores.length; i++) {
@@ -412,7 +398,6 @@ var viewHighScores = function(event) {
         scoresButtonDivEl.appendChild(goBackButton);
         scoresButtonDivEl.appendChild(clearScoresButton);
 
-
         //Append the items to the high score screen
         highScoresEl.appendChild(scoresTitleEl);
         highScoresEl.appendChild(scoresListEl);
@@ -424,7 +409,6 @@ var viewHighScores = function(event) {
             goBackButton.addEventListener("click", toggleHighScores);
         }
         else {
-            console.log("Restarting quiz");
             goBackButton.addEventListener("click", startQuiz);
             endScreenEl.style.display = "none";
         }
@@ -433,27 +417,20 @@ var viewHighScores = function(event) {
     }
     else {
         //Modify the textContent of the existing elements
-        console.log("Modifying existing elements...");
 
         for (var i = 0; i < highScores.length; i++) {
             let scoresList = document.getElementsByTagName("li");
-            console.log("scoresListEl", scoresList);
-            console.log("scoresListEl[i]", scoresList[i]);
             scoresList[i].textContent = highScores[i].name+" "+highScores[i].score;
         }
-
     }
-
 }
 
 //toggle high scores and return to previous screen on click of goBackButton
 var toggleHighScores = function() {
 
     //hide the endScreenEl if it has popped up from ending the quiz
-    console.log("endScreenEl.style.display:", endScreenEl.style.display);
     if (endScreenEl.style.display != "none") {
         endScreenEl.style.display = "none";
-        console.log("endScreenEl.style.display:", endScreenEl.style.display);
     }
 
     if (highScoresEl.style.display === "flex") {
@@ -476,7 +453,6 @@ var toggleHighScores = function() {
 
 //clear scores from array
 var clearScores = function() {
-    console.log("clearing scores...");
     for (var i = 0; i < highScores.length; i++) {
         highScores[i].name = "";
         highScores[i].score = ""
@@ -487,7 +463,6 @@ var clearScores = function() {
         let scoresList = document.getElementsByTagName("li");
         scoresList[i].textContent = "";
     }
-
 }
 
 //Event listeners for the intro page
