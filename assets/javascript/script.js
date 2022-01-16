@@ -355,12 +355,15 @@ var submitScores = function(event) {
     //Take the form submission
     var scoreName = document.querySelector("input").value;
     var userScore = timeValue;
+
     //Append that data to the highScores
     highScores.push({name: scoreName, score: userScore});
-    console.log(highScores);
 
     //Ensure the values of high scores are appended to localStorage
-    
+    localStorage.setItem("high-scores", JSON.stringify(highScores));
+    console.log("Appended the following to localStorage:", localStorage.getItem("high-scores"));
+
+
 
     viewHighScores(event);
 
@@ -384,6 +387,11 @@ var viewHighScores = function(event) {
         scoresTitleEl.textContent = "High Scores";
 
         scoresListEl = document.createElement("ul");
+
+        //Pull the data from the localStorage object and load it into highScores
+        highScores = JSON.parse(localStorage.getItem("high-scores"));
+        console.log("Parsed the following from localStorage into highScores:", highScores);
+
         //Append a new child for every entry within the highScores array
         for (var i = 0; i < highScores.length; i++) {
             var newScore = document.createElement("li");
