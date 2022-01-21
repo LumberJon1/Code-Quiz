@@ -14,6 +14,7 @@ achieved.
 ![screenshot](./assets/images/screenshot.JPG)
 
 ## Deployed Link:
+https://lumberjon1.github.io/Code-Quiz/
 
 ## Author:
 Jonathan Williams
